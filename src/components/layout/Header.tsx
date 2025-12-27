@@ -1,7 +1,16 @@
-import { Phone, Mail, Menu } from 'lucide-react';
+import { Phone, Mail, Menu, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export function Header() {
+  const { language, setLanguage, t } = useLanguage();
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -23,35 +32,55 @@ export function Header() {
             </a>
           </div>
           
-          <Button variant="ghost" size="icon" className="lg:hidden">
-            <Menu className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center gap-2">
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <Globe className="h-4 w-4" />
+                  <span className="hidden sm:inline">{language === 'es' ? 'Español' : 'English'}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setLanguage('es')} className="cursor-pointer">
+                  <span className={language === 'es' ? 'font-bold' : ''}>🇨🇱 Español</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLanguage('en')} className="cursor-pointer">
+                  <span className={language === 'en' ? 'font-bold' : ''}>🇺🇸 English</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Button variant="ghost" size="icon" className="lg:hidden">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
-        
+
         {/* Main Navigation */}
         <nav className="flex items-center justify-between py-4">
           <h1 className="text-2xl md:text-3xl font-bold text-primary">
-            JP <span className="text-secondary">Chilean Grill</span>
+            JP <span className="text-secondary">{t('header.title')}</span>
           </h1>
           
           <div className="hidden lg:flex items-center gap-8">
             <button onClick={() => scrollToSection('inicio')} className="text-foreground hover:text-primary transition-colors">
-              Inicio
+              {t('header.nav.inicio')}
             </button>
             <button onClick={() => scrollToSection('servicios')} className="text-foreground hover:text-primary transition-colors">
-              Servicios
+              {t('header.nav.servicios')}
             </button>
             <button onClick={() => scrollToSection('menu')} className="text-foreground hover:text-primary transition-colors">
-              Menú
+              {t('header.nav.menu')}
             </button>
             <button onClick={() => scrollToSection('paquetes')} className="text-foreground hover:text-primary transition-colors">
-              Paquetes
+              {t('header.nav.paquetes')}
             </button>
             <button onClick={() => scrollToSection('testimonios')} className="text-foreground hover:text-primary transition-colors">
-              Testimonios
+              {t('header.nav.testimonios')}
             </button>
             <Button onClick={() => scrollToSection('contacto')} className="btn-secondary">
-              Cotizar Ahora
+              {t('header.nav.cotizar')}
             </Button>
           </div>
         </nav>
