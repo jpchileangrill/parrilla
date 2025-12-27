@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 150 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 25% 15%;
+    --primary: 150 40% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 80% 55%;
+    --secondary-foreground: 150 25% 15%;
+    --muted: 150 10% 95%;
+    --muted-foreground: 150 10% 45%;
+    --accent: 150 30% 92%;
+    --accent-foreground: 150 40% 25%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 15% 88%;
+    --input: 150 15% 88%;
+    --ring: 150 40% 25%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 150 25% 8%;
+    --foreground: 150 10% 95%;
+    --card: 150 25% 12%;
+    --card-foreground: 150 10% 95%;
+    --popover: 150 25% 12%;
+    --popover-foreground: 150 10% 95%;
+    --primary: 150 40% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 80% 55%;
+    --secondary-foreground: 150 25% 15%;
+    --muted: 150 20% 15%;
+    --muted-foreground: 150 10% 65%;
+    --accent: 150 25% 20%;
+    --accent-foreground: 150 10% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 20% 20%;
+    --input: 150 20% 20%;
+    --ring: 150 40% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  }
+}
+
+@layer components {
+  .service-card {
+    @apply bg-card rounded-lg overflow-hidden border border-border transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .menu-card {
+    @apply bg-card rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors font-semibold;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-foreground mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-muted-foreground max-w-2xl mx-auto;
+  }
+}
